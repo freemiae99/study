@@ -14,7 +14,7 @@ a{color:#333;text-decoration:none}
 .tab .tab_list>li{flex:1;height:50px;}
 .tab .tab_list>li a{display:block;background-color:var(--bagicColor);text-align:center;line-height:50px}
 .tab .tab_list>.on a{border-color:var(--activeColor);background-color:var(--activeColor)}
-.tab .tab_panel{display:none}
+.tab .tab_panel{display:none;padding:1rem 0}
 .tab .tab_panel.on{display:block}
 
 /*scroll-tab*/
@@ -25,5 +25,3 @@ a{color:#333;text-decoration:none}
 .scroll_list>li>a{display:block;height:35px;padding:0 10px;border:1px solid var(--bagicColor);border-radius:50px;background-color:#fff;line-height:35px}
 .scroll_list>li>a:before{content:'#'}
 .scroll_list>.on a{border-color:var(--activeColor);background-color:var(--activeColor)}
-.scroll_area .list_wrap{display:none;padding:1rem 0}
-.scroll_area .list_wrap.on{display:block}
