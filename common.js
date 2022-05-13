@@ -3,42 +3,71 @@ $(function(){
 });
 
 //tab
-
+//왜 동작은 다되는데 같이먹는거냐 on같이나옴 ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ
 var tabUI = function(){
-    //wai-aria
-    var $tab = $('.ul-tab');
-    /* 나중에 상단 탭까지 마크업 맞추고 wai-area부분 여기에 몰아넣기 !  */
+    //wai-aria html에 나오게 기본셋팅
+    var $tab = $('.ul-tab');     
+    $tab.find('li.on').find('>a').attr({'title':'선택됨','aria-selected':'true'});
+    $tab.find('li.on').siblings().find('>a').attr('aria-selected','false').removeAttr('title');
 
+   
 
+     //tab 초기화 (의미를 모름 ㅜㅜ 으어 )
+     const tabInit = function() {
+        $('.ul-tab').each(function() {
+            const firstText = $(this).find('.ul-tab li:first-child a').text();
 
-    $(document).on('click','.tab_list a',function(e){
+            $(this).find('.ul-tab li:first-child').addClass('on')
+                .children('a').attr({'aria-selected': true, 'title': '선택됨'})
+                .parent('li').siblings('li').children('a').attr({'aria-selected': false})
+                .parents('.ul-tab').find('.tab_panel:eq(0)').text(firstText).addClass('on');
+        });
+    }
+    tabInit();
+ 
+    //기본탭
+    $(document).on('click','.ul-tab a',function(e){
         e.preventDefault;
         var $this = $(this);
-            $this.addClass('on').attr({'title':'선택됨','aria-selected':'true'}).siblings().removeClass('on').attr('aria-selected','false').removeAttr('title');
-            $this.parent().siblings('.tab_panel:eq('+ $this.index() +')').addClass('on').siblings('.tab_panel').removeClass('on');
+        var idx = $this.parent('li').index();
 
-            /*  <-- 이방식으로 li a 로 해보려고하니까 속성뒤에 $ 올때 어케해야할지 ㅜ_ㅜ
-                $this.addClass('on') 이다음 $this가 오고싶은데 ㅜㅜ 계속 오류 
-            */
+        //소스를 합치고싶다 scroll로 분기태워서 ㅜㅜㅜㅜㅜㅜ
 
-        // var href = $(this).attr('href');
-        // if(!$this.hasClass('on')){
-        //     $this.addClass('on').attr({'title':'선택됨','aria-selected':'true'}); 
-        //     $this.siblings('a').removeClass('on').removeAttr('title').attr({'aria-selected':'false'}); 
-        //     $this.siblings('a').removeClass('on').parent().nextAll('.tab_panel').removeClass('on');
-        //     $(href).addClass('on').parent().next('.tab_panel').removeClass('on');
-
-
-        // }else{
-        //     $this.attr({'title':'선택됨','aria-selected':'true'});
-        //     $this.siblings('a').removeAttr('title').attr({'aria-selected':'false'});
-        // } 
+        $this.attr({'aria-selected': true, 'title': "선택됨"})
+        .parent('li').addClass('on')
+        .siblings('li').removeClass('on')
+        .children('a').attr({'aria-selected': false}).removeAttr('title')
+        .parents('.ul-tab').find('.tab_panel').eq(idx).addClass('on').siblings('.tab_panel').removeClass('on');
+        
     }); 
 
-    /* 
-    offset으로 left값을 찾았는데 ...동작이 뭔가가 
-    */
 
+
+    //혬1004ver
+ 
+    // $(document).on('click','.scroll_list a', function(e){
+    //     e.preventDefault();
+    //     var $this = $(this);
+    //     var idx = $this.parent('li').index();
+    //     var $scrollWrap = $this.parents('.scroll_list');
+    //     var positionLeft = $this.parent('li').position().left + Number($this.parent('li').css('marginLeft').replace(/[^0-9]/g, ''));
+    //     var scrollLeft = $scrollWrap.scrollLeft();
+    //     $this.attr({'aria-selected': true, 'title': "선택됨"})
+    //       .parent('li').addClass('on')
+    //       .siblings('li').removeClass('on')
+    //       .children('a').attr({'aria-selected': false}).removeAttr('title')
+    //       .parents('.ul-tab').find('.tab_panel').eq(idx).addClass('on').siblings('.tab_panel').removeClass('on');
+
+    //     $scrollWrap.animate({'scrollLeft': positionLeft + scrollLeft}, 150);
+    // }) 
+
+     $(document).on('click','.scroll_list a', function(e){
+        e.preventDefault();
+        var $this = $(this);
+        var $scrollWrap = $this.parents('.scroll_list');
+
+        $scrollWrap.animate({'scrollLeft': $this.parent('li').position().left}, 150);
+        console.log($this.parent('li').position().left)
     //tab 초기화
     const tabInit = function() {
         $('.scroll_area').each(function() {
@@ -69,5 +98,4 @@ var tabUI = function(){
         $scrollWrap.animate({'scrollLeft': positionLeft + scrollLeft}, 150);
     }) 
 
-    
 }
