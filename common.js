@@ -68,9 +68,6 @@ var tabUI = function(){
         var $scrollWrap = $this.parents('.scroll_list');
         var positionLeft = $this.parent('li').position().left;
         var scrollLeft = $scrollWrap.scrollLeft();
-
-        
-
         $scrollWrap.animate({'scrollLeft': positionLeft + scrollLeft}, 150); //컨닝 ㅜㅜ 왜 스크럴 값을 더하는지 이해가 안감 ㅜㅜ 
         // console.log($this.parent('li').position().left)
 
