@@ -52,7 +52,6 @@ var tabUI = function(){
     //     var $scrollWrap = $this.parents('.scroll_list');
     //     var positionLeft = $this.parent('li').position().left + Number($this.parent('li').css('marginLeft').replace(/[^0-9]/g, ''));
     //     var scrollLeft = $scrollWrap.scrollLeft();
-
     //     $this.attr({'aria-selected': true, 'title': "선택됨"})
     //       .parent('li').addClass('on')
     //       .siblings('li').removeClass('on')
@@ -69,7 +68,34 @@ var tabUI = function(){
 
         $scrollWrap.animate({'scrollLeft': $this.parent('li').position().left}, 150);
         console.log($this.parent('li').position().left)
+    //tab 초기화
+    const tabInit = function() {
+        $('.scroll_area').each(function() {
+            const firstText = $(this).find('.scroll_list li:first-child a').text();
 
+            $(this).find('.scroll_list li:first-child').addClass('on')
+                .children('a').attr({'aria-selected': true, 'title': '선택됨'})
+                .parent('li').siblings('li').children('a').attr({'aria-selected': false})
+                .parents('.scroll_area').find('.list_wrap:eq(0)').text(firstText).addClass('on');
+        });
+    }
+    tabInit();
+
+    $(document).on('click','.scroll_list a', function(e){
+        e.preventDefault();
+        var $this = $(this);
+        var idx = $this.parent('li').index();
+        var $scrollWrap = $this.parents('.scroll_list');
+        var positionLeft = $this.parent('li').position().left + Number($this.parent('li').css('marginLeft').replace(/[^0-9]/g, ''));
+        var scrollLeft = $scrollWrap.scrollLeft();
+
+        $this.attr({'aria-selected': true, 'title': "선택됨"})
+          .parent('li').addClass('on')
+          .siblings('li').removeClass('on')
+          .children('a').attr({'aria-selected': false}).removeAttr('title')
+          .parents('.scroll_area').find('.list_wrap').eq(idx).addClass('on').siblings('.list_wrap').removeClass('on');
+
+        $scrollWrap.animate({'scrollLeft': positionLeft + scrollLeft}, 150);
     }) 
 
 }
