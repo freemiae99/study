@@ -1,5 +1,6 @@
 $(function(){
     tabUI();
+    reviewStar();
 });
 
 //tab
@@ -41,8 +42,6 @@ var tabUI = function(){
         
     }); 
 
-
-
     //혬1004ver
  
     // $(document).on('click','.scroll_list a', function(e){
@@ -72,5 +71,13 @@ var tabUI = function(){
         // console.log($this.parent('li').position().left)
 
     }) 
+}
 
+var reviewStar = function(){
+    $(document).on('click','.star_item .star', function(e){
+        var idx = $(this).index();
+        $(this).parent().children('span').removeClass('on');
+        $(this).addClass('on').prevAll('span').addClass('on');
+        $(this).parents('.star_inner').find('.star_text').eq(idx).addClass('on').siblings('.star_text').removeClass('on').siblings('.default').remove(); //parent 에서 안끊고 아래로 내려서 하니까 첫번째 텍스트 가출가출 집나가버림 왓?
+    });
 }
