@@ -11,12 +11,12 @@ wai-aria 추가해서 jQuery로 구현 갈길이 멀구나 ㅠㅠ
 
 ## List
 
-* 기본탭
+* [기본탭](https://freemiae99.github.io/study/html.html)
 * 스크롤탭
 
 
 ## html
-```c
+```html
 //기본탭구조
 <div class="tab ul-tab">
     <ul class="tab_list" role="tablist">
@@ -31,7 +31,7 @@ wai-aria 추가해서 jQuery로 구현 갈길이 멀구나 ㅠㅠ
 ```
 
 ## JS
-```c
+```javascript
 //wai-aria html에 나오게 기본셋팅
 var $tab = $('.ul-tab');     
     $tab.find('li.on').find('>a').attr({'title':'선택됨','aria-selected':'true'});
