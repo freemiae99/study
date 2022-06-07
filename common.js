@@ -93,11 +93,13 @@ var reviewStar = function(){
         });
     }
     reviewInit();
+
     $(document).on('click','.star_item .star', function(e){
         var idx = $(this).index();
         $(this).parent().children('span').removeClass('on');
         $(this).addClass('on').prevAll('span').addClass('on');
         $(this).parents('.star_inner').find('.star_text').eq(idx).addClass('on').siblings('.star_text').removeClass('on').siblings('.default').remove(); //parent 에서 안끊고 아래로 내려서 하니까 첫번째 텍스트 가출가출 집나가버림 왓?
+
         var $msg = $(this).parent().siblings('strong');
         var msgArray = [
             '별로예요',         //1점
@@ -130,4 +132,10 @@ var allCheck = function(){
     $(document).on('click','.agree_box .check_all', function(e){        
        $(this).next('.check_list').find('input[type=checkbox]').prop('checked',true);
     });
+    //키보드 조작 추가
+    $(document).on('keydown', '.star_item .star', function(e) {
+        if (e.keyCode == 13) {
+            $(this).click();
+        }
+    })
 }
