@@ -14,7 +14,7 @@ a{color:#333;text-decoration:none}
 .tab .tab_list>li{flex:1;height:50px;}
 .tab .tab_list>li a{display:block;background-color:var(--bagicColor);text-align:center;line-height:50px}
 .tab .tab_list>.on a{border-color:var(--activeColor);background-color:var(--activeColor)}
-.tab .tab_panel{display:none}
+.tab .tab_panel{display:none;padding:1rem 0}
 .tab .tab_panel.on{display:block}
 
 /*scroll-tab*/
@@ -25,5 +25,13 @@ a{color:#333;text-decoration:none}
 .scroll_list>li>a{display:block;height:35px;padding:0 10px;border:1px solid var(--bagicColor);border-radius:50px;background-color:#fff;line-height:35px}
 .scroll_list>li>a:before{content:'#'}
 .scroll_list>.on a{border-color:var(--activeColor);background-color:var(--activeColor)}
-.scroll_area .list_wrap{display:none;padding:1rem 0}
-.scroll_area .list_wrap.on{display:block}
+
+/*평점*/
+.review_area{padding:50px 0;text-align:center;}
+.reviw_area .tit{font-size:20px;}
+.star_item .star{display:inline-block;width:50px;height:50px;background:url(img/btn_star.png) no-repeat 0 0;background-size:50px 50px;cursor:pointer;}
+.star_item .star.on{background:url(img/btn_star_on.png) no-repeat 0 0;background-size:50px 50px;}
+
+.default, .star_text{display:inline-block;padding-top:10px;color:#666;}
+.star_inner .star_text{/*display:none;*/padding-left:25px;background:url(img/ico_face01.png) no-repeat 0 10px;background-size:20px 20px;}
+.star_inner .star_text.on{display:inline-block;}
