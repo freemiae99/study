@@ -33,5 +33,10 @@ a{color:#333;text-decoration:none}
 .star_item .star.on{background:url(img/btn_star_on.png) no-repeat 0 0;background-size:50px 50px;}
 
 .default, .star_text{display:inline-block;padding-top:10px;color:#666;}
-.star_inner .star_text{/*display:none;*/padding-left:25px;background:url(img/ico_face01.png) no-repeat 0 10px;background-size:20px 20px;}
+.star_inner .star_text{padding-left:25px;background:url(img/ico_face01.png) no-repeat 0 10px;background-size:20px 20px;}
 .star_inner .star_text.on{display:inline-block;}
+
+/*전체동의*/
+.agree_box{padding:20px;border:1px solid var(--bagicColor);border-radius:12px;}
+.agree_box .check_all{height:50px;line-height:50px;border-bottom:1px solid var(--bagicColor);}
+.agree_box .check_list>li{padding:20px 0;}
