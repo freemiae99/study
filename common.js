@@ -1,6 +1,7 @@
 $(function(){
     tabUI();
     reviewStar();
+    allCheck();
 });
 
 //tab
@@ -123,4 +124,10 @@ var reviewStar = function(){
             $(this).click();
         }
     })
+}
+
+var allCheck = function(){
+    $(document).on('click','.agree_box .check_all', function(e){
+       $(this).next().find('.check_list input[type=checkbox]').prop('checked',true);
+    });
 }
