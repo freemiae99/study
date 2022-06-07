@@ -127,7 +127,7 @@ var reviewStar = function(){
 }
 
 var allCheck = function(){
-    $(document).on('click','.agree_box .check_all', function(e){
-       $(this).next().find('.check_list input[type=checkbox]').prop('checked',true);
+    $(document).on('click','.agree_box .check_all', function(e){        
+       $(this).next('.check_list').find('input[type=checkbox]').prop('checked',true);
     });
 }
