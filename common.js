@@ -12,8 +12,6 @@ var tabUI = function(){
     $tab.find('li.on').find('>a').attr({'title':'선택됨','aria-selected':'true'});
     $tab.find('li.on').siblings().find('>a').attr('aria-selected','false').removeAttr('title');
 
-   
-
      //tab 초기화 (의미를 모름 ㅜㅜ 으어 )
      const tabInit = function() {
         $('.ul-tab').each(function() {
@@ -127,7 +125,27 @@ var reviewStar = function(){
 }
 
 var allCheck = function(){
+    var $agreeBox = $('.agree_box');
+    var $checkList =  $('.check_list input[type=checkbox]').length; //전체갯수
+    var $checkNum = $('.check_list input[type=checkbox]:checked').length; //선택된갯수       
+
+
+    // 전체 선택을 누르면 전체 선택이 된다.
     $(document).on('click','.agree_box .check_all', function(e){        
-       $(this).next('.check_list').find('input[type=checkbox]').prop('checked',true);
+        $(this).next('.check_list').find('input[type=checkbox]').prop('checked',true);
+     });
+    // 인풋 체크가 다되면 전체 선택이 된다.
+    $agreeBox.each(function(){
+        $('.check_list input[type=checkbox]').change(function() {
+            if(checkList == checkNum ){
+                $('.check_all').find('input[type=checkbox]').prop('checked',true);
+            }
+        });
+        // $checkList.on('change', function(){ 
+        //     
+        //  })
     });
+
+    // 하나라도 빠지면 전체선택이 해제 된다.
+    
 }
